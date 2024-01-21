@@ -1,0 +1,66 @@
+<h3>Libros en Stock</h3>
+
+<a routerLink="/administrador" class="button">Crear Nuevo Libro</a>
+
+<input type="text" [(ngModel)]="palabraBusqueda" placeholder="Buscar por título">
+<button (click)="buscarLibros()">Buscar</button>
+
+<div *ngIf="libroSeleccionado">
+  <form [formGroup]="formularioLibro">
+    <label>Título</label>
+    <input formControlName="titulo" />
+    <label>Autor</label>
+    <input formControlName="autor" />
+    <label>Año de Publicacion</label>
+    <input formControlName="aniopublicacion" />
+    <label>Genero</label>
+    <input formControlName="genero" />
+    <label>Cantidad Disponible</label>
+    <input formControlName="cantidaddisponible" />
+    <label>CodigoISBN</label>
+    <input formControlName="codigoISBN" />
+    <button (click)="guardarCambios()">Guardar Cambios</button>
+  </form>
+</div>
+
+<div> 
+    @for (libro of libros; track $index) {
+     <h2 *ngIf="libro.titulo">
+      {{ libro.titulo }}
+      </h2>
+      <p *ngIf="libro.autor">
+        Autor: {{ libro.autor }}
+         </p>
+       <p *ngIf="libro.aniopublicacion">
+        Año de Publicación: {{ libro.aniopublicacion }}
+        </p>
+         <p *ngIf="libro.genero">
+        Género: {{ libro.genero }}
+          </p>
+       <p *ngIf="libro.cantidaddisponible">
+        Cantidad Disponible: {{ libro.cantidaddisponible }}
+        </p>
+        <p *ngIf="libro.codigoISBN">
+        Codigo ISBN: {{ libro.codigoISBN }}
+     </p>
+    
+    
+     <button (click)="seleccionarLibro(libro)">Editar</button>
+
+     <button (click)="eliminarLibro(libro)">Eliminar</button>
+    
+     <button (click)="prestarLibro(libro)">Prestar</button>
+
+
+      <button (click)="redirigirAPrestamo(libro, 'devolver')">Devolver</button>
+    }
+</div>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+<h3>Usuarios En Sistema</h3>
+
+<a routerLink="/crearUsuario" class="button">Crear Nuevo Usuario</a>
+
+<input type="text" [(ngModel)]="palabraBusqueda" placeholder="Buscar por nombre">
+<button (click)="buscarUsuarios()">Buscar</button>
+
+<div *ngIf="usuarioSeleccionado">
+  <form [formGroup]="formularioUsuario">
+    <label>Nombre</label>
+    <input formControlName="nombre" />
+    <label>Apellido</label>
+    <input formControlName="apellido" />
+    <label>Id</label>
+    <input formControlName="id" />
+    <label>Cantidad Prestada</label>
+    <input formControlName="cantidadPrestada" />
+    
+    <button (click)="guardarCambios()">Guardar Cambios</button>
+  </form>
+</div>
+
+<div> 
+    @for (usuario of usuarios; track $index) {
+     <p *ngIf="usuario.nombre">
+        Usuario: {{ usuario.nombre }} {{ usuario.apellido }}
+     </p>
+       <p *ngIf="usuario.id">
+        Id: {{ usuario.id }}
+        </p>
+        <p *ngIf="usuario.cantidadPrestada">
+          Cantidad Prestada: {{ usuario.cantidadPrestada }}
+          </p>
+    
+    
+     <button (click)="seleccionarUsuario(usuario)">Editar</button>
+
+     <button (click)="eliminarUsuario(usuario)">Eliminar</button>
+
+     <button (click)="asignarUsuario(usuario)">Asignar</button>
+    
+    }
+</div>

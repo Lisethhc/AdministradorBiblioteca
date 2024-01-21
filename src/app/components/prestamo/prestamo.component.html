@@ -1,0 +1,44 @@
+
+<div>
+    <h2>Prestamo</h2>
+    <div>
+      <h3>Datos del Libro</h3>
+      <p>Titulo: {{ libro?.titulo }}</p>
+      <p>Autor: {{ libro?.autor }}</p>
+      <!-- Agrega más detalles del libro según tu modelo -->
+    </div>
+    <div>
+      <h3>Datos del Usuario</h3>
+      <p>Nombre: {{ usuario?.nombre }}</p>
+      <p>Apellido: {{ usuario?.apellido }}</p>
+      <!-- Agrega más detalles del usuario según tu modelo -->
+    </div>
+    <!-- Agrega aquí otros elementos y funcionalidades de tu componente Prestamo -->
+  </div>
+  
+
+<div>
+    <h2>Prestamos</h2>
+    <ul>
+      <li *ngFor="let prestamo of obtenerPrestamos()">
+        {{ prestamo.libro.titulo }} - {{ prestamo.usuario.nombre }}
+        <button (click)="devolverLibro(prestamo.libro, prestamo.usuario)">Devolver</button>
+      </li>
+    </ul>
+  </div>
+  
+  <div>
+    <h2>Prestar Libro</h2>
+    <select [(ngModel)]="libroSeleccionado">
+      <option *ngFor="let libro of libros" [ngValue]="libro">{{ libro.titulo }}</option>
+    </select>
+  
+    <select [(ngModel)]="usuarioSeleccionado">
+      <option *ngFor="let usuario of usuarios" [ngValue]="usuario">{{ usuario.nombre }}</option>
+    </select>
+  
+    <button (click)="libroSeleccionado && usuarioSeleccionado ? prestarLibro(libroSeleccionado, usuarioSeleccionado) : null" [disabled]="!libroSeleccionado || !usuarioSeleccionado">
+        Prestar
+      </button>
+  </div>
+  

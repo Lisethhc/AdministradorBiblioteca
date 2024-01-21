@@ -1,0 +1,19 @@
+
+
+<form #formulario="ngForm" (submit)="onSubmit(formulario.value)">
+    <div>
+        <label>Nombre</label>
+        <input type="text" name="nombre" ngModel>
+    </div>
+    <div>
+        <label>Apellido</label>
+        <input type="text" name="apellido" ngModel>
+    </div>
+    <div>
+        <label>Id</label>
+        <input type="text" name="id" ngModel>
+    </div>
+    
+    <input type="submit" class="submit" value="{{ 'Agregar' }}">
+    
+</form>
